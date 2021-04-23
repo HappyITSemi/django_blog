@@ -1,0 +1,13 @@
+# https://www.ipa.go.jp/security/vuln/websecurity.html
+1 SQL Injection
+2 OS command injection
+3 Unchecked pathname parameter / directory traversal
+4 Poor Session Management
+5 Cross-site scripting
+6 CSRF (Cross Site Request Forgery)
+7 HTTP Header Injection
+8 Email Header Injection
+9 Clickjacking
+10 Buffer Overflow
+11 Lack of access control and authorization control
+

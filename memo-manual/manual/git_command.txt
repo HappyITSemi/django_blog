@@ -1,0 +1,32 @@
+# https://qiita.com/masashi127/items/2e103c3fba9d1b058961?utm_source=Qiitaニュース&utm_campaign=f935d59746-Qiita_newsletter_187_12_23_2015&utm_medium=email&utm_term=0_e44feaa081-f935d59746-32830773
+
+Terms
+Working tree ・Work
+Staging - Index
+Repository
+
+Local: my machine origin/master
+Remote: Cloud, GitHub, CodeCommit origin/master
+
+--- How to pull and push code to codecommit after writing code locally
+>> First, register the remote
+(Example) $> git remote set-url origin git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/django_simple_repo
+(Example) URL: https://git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/django_simple_repo
+
+1) Register id and password in AWS connection in advance.
+2) Register the remote (AWS codecommit)
+Create a repository with AWS codecommit, and create a readme.txt file.
+(3) Configure the remote with git
+git remote -v
+git remote set-url origin https://git-codecommit.ap-northeast-1.amazonaws.com/v1/repos/django_simple_repo
+For the url, copy the HTTPS from the codecommit screen.
+4) Try to pull and push
+First, do an all commit locally, then
+$> git pull origin master
+If you do $> git push origin master, you'll get an error, so you'll need to merge it first.
+(！！！！！！！) At first, you do this!
+$> git merge --allow-unrelated-histories origin/master
+ Then you can pull and push.
+
+# -------------------------------------------------------#
+

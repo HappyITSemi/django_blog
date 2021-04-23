@@ -1,0 +1,8 @@
+"""
+Scenario_0 Checking file arrival in FTP Holder, UTF-8 conversion, zipping, PGP encryption
+Scenario_1 Import journal and master into UCM
+Scenario_2 Load journal and master to OracleERP
+Scenario_3 Import journal and master to OracleERP
+Scenario_4 Extract file from OracleERP and convert to file
+Scenario_5 PGP compositing, Unzip, Shift_JIS conversion, and copy the file to a shared folder.
+"""

@@ -1,0 +1,125 @@
+# Cheat Sheet: https://qiita.com/spiegel-im-spiegel/items/079d69282166281eb946
+# python-gnupg
+1) Create a public key and a private key, or download them from the key creation server.
+2) Register and confirm.
+3) Trust and confirm.
+
+****
+$> gpg --expert --full-gen-key
+$> gpg --import alice-key.asc  <-- import key from OracleERP-Cloud
+$> gpg --edit-key key-name <-- to Ultimate (period)
+ gpg> trust
+ gpg> 5 = ultimate
+ gpg> quit
+# ****
+
+$> gpg --expert --full-gen-key
+# passphrase = Keiri2021
+
+# パスフレーズの変更
+$ gpg --passwd alice
+
+# import public-key (like *.asc)
+# if you import private-key, you can import both private-key and public-key.
+$ gpg --import alice-key.asc
+
+# https://docs.red-dove.com/python-gnupg/
+# Verify alias-key alias0210_pub.asc
+
+$> gpg --list-keys alias0210
+(Example) alias201601
+pub rsa1024 2021-02-16 [SCEA].
+      BE038A84DF20DC4B37732254F8A77E42117AA814  <- ID and fingerprint
+uid [ unknown ] alias201601
+
+sec rsa1024 2021-02-16 [SCEA].
+      BE038A84DF20DC4B37732254F8A77E42117AA814
+uid [ unknown ] alias201601
+
+(Example2)
+sec   rsa1024 2021-04-06 [SC]
+      07ED4D15DBE926699E2E2B38ED429D99EE4E965C
+uid           [  究極  ] keiri <keiri@email.com>  <--- (key name) is keiri
+ssb   rsa1024 2021-04-06 [E]
+
+(*) web of trust in PGP
+(*)PGP uses two similar but different concepts: valid and trust. It also uses
+(*)PGP uses two similar but different concepts, valid and trust, and the link between them is sign.
+
+valid
+    Target: key+uid pair
+    Types: unknown, marginal, full
+    Meaning: The identity of the key+uid is guaranteed.
+trust
+Target: key
+    Type: none, unknown, marginal, full, ultimate
+    Meaning: The owner of the key has good judgment.
+sign
+    To guarantee the identity of a key+uid.
+
+>>Obtain a fingerprint from the received public key, and
+  If the fingerprint matches the one provided by the key owner, the key is considered legitimate.
+# The key is considered legitimate if it matches the fingerprint provided by the key owner.
+＜gpg interactive mode
+$> gpg --edit-key <key-id>
+
+$> gpg --list-keys # public-key
+$> gpg --list-secret-keys # private-key
+$> gpg --list-sign # sign sign
+$> gpg --check-sign
+
+$> gpg --import <key file> # import key
+
+$> gpg --output doc.sig --sign doc # Sign the file.
+
+
+$> gpg --edit-key name # Trust, "ultimate" will be displayed
+gpg>trust
+
+>>>>>>>>>>>>>>>>>>>>
+Encrypt a file
+# https://laboradian.com/encrypt-with-gpg/
+$> gpg -r name -ea File you want to encrypt # Encrypt
+   gpg -e -a -r alias201601 . /indata/Glinterface_modify.csv
+   [output].
+   ・Glinterface_modify.csv.asc # ← Encrypted file
+
+$> gpg -o output file -d encrypted file # compound
+
+A file will be created with ".asc" appended to the end of the file name (encrypted)
+-r option: Specifies the user (public key of the user) to receive the file
+-e option: encrypts the file using the public key
+The -a option: Creates an ASCII file (which can be opened with a text editor).
+File comparison
+$> diff . /Glinterface_modify.csv . /indata/Glinterface_modify.csv
+
+# -- -- -- -- --
+
+Key Pair
+Key pair generation: gpg --gen-key
+Key revocation certificate creation: gpg -o Filename_Revoke_Out --gen-revoke Keyname
+
+Key Management
+List keys: gpg --list-keys
+List private keys: gpg --list-secret-keys
+
+Export keys (from a file to a bunch of keys): gpg -o Filename_Key_Out --export Keyname
+Import a key (from a keyring to a file): gpg --import Filename_Key_In
+Fingerprint the key: gpg --fingerprint Keyname
+Sign the key: gpg --sign-key Keyname
+
+Configure key (trust level, passphrase, etc.): gpg --edit-key Keyname
+Delete a key (from a keyring): gpg --delete-key Keyname
+Send keys (to public keyserver): gpg --keyserver Servername --send-keys Keyname
+Search for keys (on public keyservers): gpg --keyserver Servername --search-keys KeyID
+Get keys (from public key server): gpg --keyserver Servername --recv-keys KeyID
+
+Encryption and signing
+Encryption: gpg -o Filename_Cipher_Out -r Keyname --encrypt Filename_Plain_In
+Decryption: gpg -o Filename_Plain_Out --decrypt Filename_Cipher_In
+Signature: gpg -o Filename_Signed_Out --sign Filename_Plain_In
+Verification: gpg --verify Filename_Signed_In
+Encryption with Symmetric Cipher: gpg -o Filename_Cipher_Out --symmetric Filename_Plain_In
+Decryption with symmetric cipher: gpg -o Filename_Plain_Out --decrypt Filename_Cipher_In
+
+

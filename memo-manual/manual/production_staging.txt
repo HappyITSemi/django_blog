@@ -1,0 +1,27 @@
+production / staging
+Individual settings
+DEBUG: Debug flag (development: Ture / production: False)
+Production DEBUG = False
+Staging
+Development DEBUG = True
+
+DATABASE: Database connection
+Production
+Staging
+Development
+
+MEDIA_ROOT, etc.: Storage settings
+Production
+Staging
+Development
+
+STATIC_ROOT: Static file placement
+Production
+Staging
+Development
+
+LOGGING: Log output
+Production
+Staging
+Development
+

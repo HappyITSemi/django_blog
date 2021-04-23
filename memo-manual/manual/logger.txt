@@ -1,0 +1,101 @@
+# Create a logger
+
+Main elements: logger, handler, filter, and formatter objects
+Logging configuration --- logging.config.dictConfig → same as logging_config.py
+Logging HowTo https://docs.python.org/ja/3.6/howto/logging.html
+Logging Preferences https://docs.python.org/ja/3.6/library/logging.config.html
+Logging is made up of four elements: Loggers, Handlers, Filters, and Formatters.
+
+Logger Accepts log output.
+Handler Sets the destination of log output (standard output, file, mail, etc.)
+Filter Sets a filter with a Boolean function separately from the log level.
+Formatter Sets the format of strings to be output to the log.
+
+|Set the format of string to be output to log.
+|---- |---- |---- |----
+|NOTSET |0 |all records such as setting values|
+|DEBUG |10 |Debug records such as operation check|
+|INFO |20 |Record of normal operation|
+|WARNING |30 |Record of warning| |ERROR |40 |Record of error
+|ERROR |40 |record of errors|
+|CRITICAL |50 |Fatal problems such as stoppage|
+
+Making a root logger
+Logs are transferred from each logger
+logger = logging.getLogger(<<logger's name>>)
+
+From each logger
+logger.debug("debug")
+
+All handlers and formatters are set to the root logger and
+　All handlers and formatters are set in the root logger, and the root logger outputs the log information transferred from the named logger to the console or a file.
+
+import logging_config
+import logging_config
+
+##### Generate logger with module name (main module will be named '__main__')
+log = logging.getLogger(__name__)
+
+For non-main modules, use
+import logging
+log = logging.getLogger(__name__)
+
+Where you want to output the log
+log.debug('debug')
+
+log.info('info')
+
+Default logging for Django. This sends an email to the site admins on every
+Depending on DEBUG, all other log records are either sent to the
+Depending on DEBUG, all other log records are either sent to the console (DEBUG=True) or discarded (DEBUG=False) by means of the
+require_debug_true filter.
+Django's default log. This causes an email to be sent to the site administrator for every HTTP 500 error.
+Depending on DEBUG, all other log records will either be sent to the console by using the require_debug_true filter
+console using the require_debug_true filter (DEBUG = True) or will be destroyed (DEBUG = False).
+
+DEFAULT_LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[%(server_time)s] %(message)s a',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}

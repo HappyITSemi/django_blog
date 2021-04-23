@@ -1,0 +1,60 @@
+# Except List
+List
+error/exception Overview
+BaseException Base class for all Exceptions
+   Exception Base class for all non-exit Exceptions
+     ArithmeticError Defining class for OverflowError and ZeroDivisionError
+       FloatingPointError Not used
+       OverflowError Overflow in arithmetic
+       ZeroDivisionError Zero division
+     AssertionError Raised when assert fails
+     AttributeError Failed to reference or assign an attribute.
+     BufferError Buffer operation failure
+     EOFError When an invalid EOF is detected.
+     ImportError Parent class of ModuleNotFoundError
+       ModuleNotFoundError Import module not found
+     LookupError Parent class of IndexError and KeyError
+       IndexError Lookup of an out-of-range index
+       KeyError Refers to a key in a non-existent dictionary.
+     MemoryError Insufficient memory
+     NameError Referencing a non-existent name (local variable, etc.)
+       UnboundLocalError Refers to a variable that has not been assigned.
+     OSError System function error
+       BlockingIOError Blocking non-blocking operation
+       ChildProcessError Error in a child process operation
+       ConnectionError Connection error
+         BrokenPipeError Operation on broken connection.
+         ConnectionAbortedError Manipulate an aborted connection.
+         ConnectionRefusedError Manipulate a refused connection.
+         ConnectionResetError Manipulates a connection that has been reset.
+       FileExistsError File already exists.
+       FileNotFoundError File not found.
+       InterruptedError Interrupted.
+       IsADirectoryError directory.
+       NotADirectoryError Not a directory.
+       PermissionError No permission.
+       ProcessLookupError No process.
+       TimeoutError Timed out.
+     ReferenceError Accessing a recovered reference with a weak reference
+     RuntimeError Execution error that cannot be categorized elsewhere
+       NotImplementedError Not implemented error
+       RecursionError Number of recursions exceeded limit
+     StopAsyncIteration Iteration stop (used in anext)
+     StopIteration Iteration stop (used in next)
+     SyntaxError Syntax error
+        IndentationError Indentation is wrong.
+          TabError Inconsistent indentation of tabs and spaces
+     SystemError System error
+     TypeError Type is wrong.
+     ValueError Value is wrong
+       UnicodeError Error in Unicode encode/decode
+         UnicodeDecodeError Error in Unicode decode
+         UnicodeEncodeError Error in Unicode encode
+         UnicodeTranslateError Error in Unicode translate
+   GeneratorExit Operation on a closed generator.
+   KeyboardInterrupt Stops using Ctrl+c or other keyboard.
+   SystemExit Stops the program with sys.exit().
+
+
+KeyboardInterrupt
+Exception 

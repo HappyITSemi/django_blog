@@ -1,0 +1,41 @@
+# Reference URL: https://qiita.com/okoppe8/items/eb7c3be5b9f6be244549
+
+Run the automated test
+$> python3 manage.py test
+
+Specify the execution range.
+# Application unit
+$ . /manage.py test app
+
+# Per file
+$ python3 manage.py test app.tests
+
+# Per test class
+$ python3 manage.py test animals.tests.testcase
+
+# Per method
+AnimalTestCase.test_can_something $ python3 manage.py test animals.tests.
+
+Command options
+> -v {0,1,2,3} --verbosity {0,1,2,3}
+Execution log detail level,
+If you set it to level 3, you can see when the database is changed, etc., so it is easier to understand if you use this option in the beginning.
+
+>-k --keepdb
+The default behavior of automated tests is to recreate the database every time.
+This option avoids the re-creation and leaves the database without deleting it, and reuses it the next time it is run.
+
+> --settings SETTINGS
+With a single configuration file (settings.py), it is difficult to configure the production, development, and automated test environments separately.
+
+<How to split the configuration file>.
+base_dir
+  ├ manage.py # [Update] Startup script for development environment
+  └ config
+      ├ wsgi.py # [Update] Startup script for production environment
+      └ settings # [New] Configuration file directory
+          ├ __init__.py # [New] Configuration file directory
+          ├ base.py # [New] Common settings *Use original settings.py
+          ├ local.py # [New] Development environment settings
+          └ production.py # [New] Production environment settings
+

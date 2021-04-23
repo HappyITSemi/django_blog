@@ -1,0 +1,15 @@
+# https://gist.github.com/fortune/9cfa6f0cb4878b63e5027d8ecba6e966
+
+Sample logging configuration in Django.
+If you use the logging.config.dictConfig function, pass a dictionary describing the configuration.
+
+Coverage documentation: https://github.com/nedbat/coveragepy/blob/coverage-4.5.1a/doc/index.rst
+①$> pip install coverage
+ After installation, you can run tests via Coverage.py, create result files, and view reports in the console.
+ You can display the report in the console or output it in HTML.
+ Please refer to the link for setting exclusions, etc.
+
+$> coverage run --source='. manage.py test batchline.management.commands.log_date
+$> coverage report
+
+

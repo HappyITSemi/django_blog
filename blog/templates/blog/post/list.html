@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block title %}
+    PostList
+{% endblock %}
+{% block content %}
+    {% for post in object_list %}
+        {{ post.title }}<br>
+        {{ post.slug }}<br>
+        {{ post.author }}<br>
+        {{ post.body }}<br>
+        {{ post.publish }}<br>
+        {{ post.created }}<br>
+        {{ post.updated }}<br>
+        {{ post.status }}<br><br>
+    {% endfor %}
+{% endblock %}

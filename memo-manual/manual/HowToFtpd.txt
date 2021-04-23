@@ -1,0 +1,35 @@
+# sudo apt-get install -y nano
+# root@www:~# systemctl restart vsftpd
+
+root@www:~# apt -y install vsftpd
+root@www:~# vi /etc/vsftpd.conf
+
+# Line 31: Uncomment (write enable)
+write_enable=YES
+
+# Lines 99,100: uncomment (allow ascii mode transfer)
+ascii_upload_enable=YES
+ascii_download_enable=YES
+
+# Line 122: uncomment (chroot enabled)
+chroot_local_user=YES
+
+# Line 123: uncomment (chroot list enable)
+chroot_list_enable=YES
+
+# Line 125: uncomment (chroot list specified)
+chroot_list_file=/etc/vsftpd.chroot_list
+
+# Line 131: Uncomment (enable bulk transfer of whole directories)
+ls_recurse_enable=YES
+
+# Add to last line: Specify root directory for chroot.
+# If this is not specified, the user's home directory is the root directory.
+# If not, the user's home directory is the root directory.
+local_root=public_html
+# Turn off seccomp filter (if you can't login)
+seccomp_sandbox=NO
+root@www:~# vi /etc/vsftpd.chroot_list
+# List users who are allowed to move up in the hierarchy, line by line
+ubuntu
+root@www:~# systemctl restart vsftpd
