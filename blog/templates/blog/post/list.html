@@ -3,14 +3,33 @@
     PostList
 {% endblock %}
 {% block content %}
-    {% for post in object_list %}
-        {{ post.title }}<br>
-        {{ post.slug }}<br>
-        {{ post.author }}<br>
-        {{ post.body }}<br>
-        {{ post.publish }}<br>
-        {{ post.created }}<br>
-        {{ post.updated }}<br>
-        {{ post.status }}<br><br>
-    {% endfor %}
+        <h5>■Post
+        <a href="{% url 'blog:post_create' %}" class="btn btn-sm btn-primary">新規</a></h5>
+        <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <td>title</td>
+                <td>slug</td>
+                <td>author</td>
+                <td>body</td>
+                <td>status</td>
+                <td>Update</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for post in object_list %}
+            <tr>
+                <td><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.author }}</td>
+                <td>{{ post.body }}</td>
+                <td>{{ post.status }}</td>
+                <td><a href="{% url 'blog:post_update' post.pk %}">更新</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        {% include 'blog/page_no.html' %}
 {% endblock %}

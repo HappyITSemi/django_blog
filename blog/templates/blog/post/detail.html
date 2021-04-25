@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block title %}PostDetail{% endblock %}
+{% block content %}
+<br>
+<div class="card">
+  <div class="card-header">
+    Post Detail
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Post Detail</h5>
+      <table class="table table-border">
+          <tr><td>PK</td><td>{{ post.pk }}</td></tr>
+          <tr><td>slug</td><td>{{ post.slug }}</td></tr>
+          <tr><td>Author</td><td>{{ post.author }}</td></tr>
+          <tr><td>Body</td><td>{{ post.body }}</td></tr>
+          <tr><td>Publish</td><td>{{ post.publish }}</td></tr>
+          <tr><td>Created</td><td>{{ post.created|date:"Y-m-j H:i:s" }}</td></tr>
+          <tr><td>Updated</td><td>{{ post.updated|date:"Y-m-j H:i:s" }}</td></tr>
+        <tr><td>Status</td><td>{{ post.status }}</td></tr>
+      </table>
+      <a href="{% url 'blog:post_list' %}" class="btn btn-primary">戻る</a>
+  </div>
+</div>
 
-</body>
-</html>
+{% endblock %}
