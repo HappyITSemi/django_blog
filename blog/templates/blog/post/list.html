@@ -3,33 +3,41 @@
     PostList
 {% endblock %}
 {% block content %}
-        <h5>■Post
+    <h5>■Post　
         <a href="{% url 'blog:post_create' %}" class="btn btn-sm btn-primary">新規</a></h5>
-        <table class="table table-bordered table-striped table-sm">
+    <table class="table table-bordered table-striped table-sm">
         <thead>
-            <tr>
-                <td>title</td>
-                <td>slug</td>
-                <td>author</td>
-                <td>body</td>
-                <td>status</td>
-                <td>Update</td>
-            </tr>
+        <tr>
+            <td>title</td>
+            <td>slug</td>
+            <td>author</td>
+            <td>body</td>
+            <td>status</td>
+            <td>更新/削除</td>
+        </tr>
         </thead>
 
         <tbody>
-            {% for post in object_list %}
+        {% for post in object_list %}
             <tr>
                 <td><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></td>
                 <td>{{ post.slug }}</td>
                 <td>{{ post.author }}</td>
                 <td>{{ post.body }}</td>
                 <td>{{ post.status }}</td>
-                <td><a href="{% url 'blog:post_update' post.pk %}">更新</a></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="更新/削除">
+                        <button type="button" class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'blog:post_update' post.pk %}">更新</a>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'blog:post_delete' post.pk %}">削除</a></button>
+                    </div>
+                </td>
             </tr>
-            {% endfor %}
+        {% endfor %}
         </tbody>
-        </table>
+    </table>
 
-        {% include 'blog/page_no.html' %}
+    {% include 'blog/page_no.html' %}
 {% endblock %}

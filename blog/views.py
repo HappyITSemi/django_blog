@@ -67,3 +67,9 @@ class PostUpdateView(UpdateView):
         messages.error(self.request, "PostのUpdateに失敗しました。")
         return super().form_invalid(form)
 
+
+class PostDeleteView(UpdateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/post/delete.html'
+    success_url = reverse_lazy('blog:post_list')
