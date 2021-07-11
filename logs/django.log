@@ -1,0 +1,7 @@
+2021/Jul/10 07:48:01	[ERROR] 18456 4728565248) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 07:49:13	[ERROR] 18542 4572192256) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 07:49:29	[ERROR] 18582 4517412352) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 08:05:47	[ERROR] 18726 4722695680) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 08:06:37	[ERROR] 18758 4607360512) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 08:06:59	[ERROR] 18799 4410150400) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check
+2021/Jul/10 08:07:27	[ERROR] 18823 4534136320) /Users/nakashima-toshio/PycharmProjects/django_blog/batch/management/commands/check.py(Line:21)	error--check

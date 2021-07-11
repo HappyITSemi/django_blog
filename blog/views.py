@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.shortcuts import render
 
@@ -17,6 +19,13 @@ class PostListView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data()
         context['posts'] = Post.objects.order_by('pk').all()
+
+        # logger = logging.getLogger("django")
+        # logger.debug("level-debug")
+        # logger.info("level-info")
+        # logger.warning("level-warning")
+        # logger.error("level-error")
+
         return context
 
     def get_queryset(self):
